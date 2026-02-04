@@ -17,8 +17,8 @@ jobs:
         name: 'Authentication to Google Cloud'
         uses: 'google-github-actions/auth@v2'
         with:
-          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
-          service_account: ${{ secrets.WIF_SERVICE_ACCOUNT }}
+          workload_identity_provider: 'projects/582508909454/locations/global/workloadIdentityPools/wif-pool-github-gcp/providers/github-provider'
+          service_account: 'github-wif-test@cms-vpc-control-poc.iam.gserviceaccount.com'
       - name: 'Verify Connection'
         run: |
           gcloud auth list
