@@ -3,20 +3,22 @@ on:
   push:
     branches: [ main ]
 jobs:
-  test-connection:
-    runs-on: ubuntu-latest
+  build:
+    # Allow the job to fetch a GitHub ID token
     permissions:
-      contents: 'read'
-      id-token: 'write'
+      id-token: write
+      contents: read
+
+    runs-on: ubuntu-latest
 
     steps:
-      - name: 'Checkout Reposity'
-        uses: 'actions/checkout@v4'
+      - uses: actions/checkout@v3
 
       - id: 'auth'
-        name: 'Authentication to Google Cloud'
-        uses: 'google-github-actions/auth@v2'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
         with:
+          create_credentials_file: true
           workload_identity_provider: 'projects/582508909454/locations/global/workloadIdentityPools/wif-pool-github-gcp/providers/github-provider'
           service_account: 'github-wif-test@cms-vpc-control-poc.iam.gserviceaccount.com'
       - name: 'Verify Connection'
