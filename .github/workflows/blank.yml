@@ -21,8 +21,6 @@ jobs:
           create_credentials_file: true
           workload_identity_provider: 'projects/582508909454/locations/global/workloadIdentityPools/wif-pool-github-gcp/providers/github-provider'
           service_account: 'github-wif-test@cms-vpc-control-poc.iam.gserviceaccount.com'
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
 
       - name: 'Verify Connection'
         run: |
