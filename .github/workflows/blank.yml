@@ -21,7 +21,7 @@ jobs:
           service_account: ${{ secrets.WIF_SERVICE_ACCOUNT }}
       - name: 'Verify Connection'
         run: |
-          gcloud storage ls
           gcloud auth list
           gcloud config list
+          gcloud storage ls
           echo "Connection is Successful!"
